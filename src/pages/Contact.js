@@ -42,14 +42,6 @@ const Contact = () => {
       <div className="container contact-grid">
         <div className="contact-info">
           <h1>Contact Me</h1>
-          <p>
-            Have a project in mind, want to collaborate, or just want to say hi?
-            Fill out the form and I will get back to you shortly.
-          </p>
-          <div className="contact-details">
-            <p><strong>Email:</strong> you@example.com</p>
-            <p><strong>Location:</strong> Remote / Worldwide</p>
-          </div>
         </div>
         <div className="contact-form-card">
           <form onSubmit={handleSubmit}>

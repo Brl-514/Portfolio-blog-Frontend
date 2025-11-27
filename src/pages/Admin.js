@@ -6,7 +6,6 @@ const Admin = () => {
   const [activeTab, setActiveTab] = useState('blog');
   const [blogs, setBlogs] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -49,12 +48,9 @@ const Admin = () => {
       if (activeTab === 'blog') {
         const response = await api.get('/blog/admin/list');
         setBlogs(response.data);
-      } else if (activeTab === 'project') {
+      } else {
         const response = await api.get('/projects');
         setProjects(response.data);
-      } else {
-        const response = await api.get('/contact');
-        setMessages(response.data);
       }
     } catch (err) {
       console.error('Failed to fetch data:', err);
@@ -179,7 +175,7 @@ const Admin = () => {
         {success && <div className="success-message">{success}</div>}
 
         <div className="admin-tabs">
-          {['blog', 'project', 'contact'].map((tab) => (
+          {['blog', 'project'].map((tab) => (
             <button
               key={tab}
               onClick={() => {
@@ -194,15 +190,13 @@ const Admin = () => {
           ))}
         </div>
 
-        {activeTab !== 'contact' && (
-          <div className="admin-actions">
-            <button onClick={() => setShowForm(true)} className="btn btn-primary">
-              Add New {activeTab === 'blog' ? 'Blog Post' : 'Project'}
-            </button>
-          </div>
-        )}
+        <div className="admin-actions">
+          <button onClick={() => setShowForm(true)} className="btn btn-primary">
+            Add New {activeTab === 'blog' ? 'Blog Post' : 'Project'}
+          </button>
+        </div>
 
-        {showForm && activeTab !== 'contact' && (
+        {showForm && (
           <div className="admin-form-container">
             <h2>{editingItem ? 'Edit' : 'Create'} {activeTab === 'blog' ? 'Blog Post' : 'Project'}</h2>
             <form onSubmit={handleSubmit} className="admin-form">
@@ -355,31 +349,6 @@ const Admin = () => {
                         Delete
                       </button>
                     </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-
-          {activeTab === 'contact' && (
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Subject</th>
-                  <th>Message</th>
-                  <th>Received</th>
-                </tr>
-              </thead>
-              <tbody>
-                {messages.map((msg) => (
-                  <tr key={msg._id}>
-                    <td>{msg.name}</td>
-                    <td>{msg.email}</td>
-                    <td>{msg.subject || '-'}</td>
-                    <td>{msg.message}</td>
-                    <td>{new Date(msg.createdAt).toLocaleDateString()}</td>
                   </tr>
                 ))}
               </tbody>
