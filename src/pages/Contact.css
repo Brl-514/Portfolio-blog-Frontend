@@ -1,0 +1,72 @@
+.contact-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 0;
+  background: #f8fafc;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+.contact-info h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  color: #555;
+  line-height: 1.7;
+}
+
+.contact-details {
+  margin-top: 20px;
+  line-height: 1.8;
+}
+
+.contact-form-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.contact-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form-card .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-card label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.contact-form-card input,
+.contact-form-card textarea {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+  border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .contact-info h1 {
+    font-size: 28px;
+  }
+}
+
